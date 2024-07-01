@@ -43,36 +43,21 @@
        ```bash
        sudo nano /etc/systemd/system/metasploit.service
        ```
-       | [Unit]                                                 |        
-       | Description=Metasploit Framework                       |
-       | After=network.target                                   |
-       |                                                        |
-       | [Service]                                              |
-       | Type=simple                                            |
-       | ExecStart=/usr/local/bin/msfconsole                    |
-       | User=root                                              |  
-       | WorkingDirectory=/usr/local/share/metasploit-framework |
-       |                                                        |
-       | [Install]                                              |
-       | WantedBy=multi-user.target                             |
-       |                                                        |
+      <pre>
+      ```
+      [Unit]
+      Description=Metasploit Framework
+      After=network.target
+      [Service]
+      Type=simple
+      ExecStart=/usr/local/bin/msfconsole
+      User=root
+      WorkingDirectory=/usr/local/share/metasploit-framework
+      [Install]
+      WantedBy=multi-user.target
+      ```
+      </pre>
 
-
-ini
-Copy code
-[Unit]
-Description=Metasploit Framework
-After=network.target
-
-[Service]
-Type=simple
-ExecStart=/usr/local/bin/msfconsole
-User=root
-WorkingDirectory=/usr/local/share/metasploit-framework
-
-[Install]
-WantedBy=multi-user.target
-Start and verify Metasploit service:
 
 bash
 Copy code
