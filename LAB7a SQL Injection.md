@@ -24,29 +24,40 @@
     \du   # Check if 'postgres' user exists and is a superuser
     alter user postgres with password 'admin@123';
     \l   # Check for a database named 'postgres'
-Lab 2: Setting Up Metasploit
-Start Metasploit (old method, might not work):
+    
+- Start Metasploit
+   ```bash
+    /etc/init.d/metasploit start # (old method, won't work)
+    ```
+  - Instead, install Metasploit Framework:
+    ```bash
+    sudo apt install metasploit-framework
+    ```
+  -  if **sudo systemctl start metasploit** work do not do the following comands else do this:
+      - Verify Metasploit paths:
+        ```bash
+        which msfconsole
+        locate metasploit-framework
+        ```
+     - Adjust Metasploit service configuration if paths differ:
+       ```bash
+       sudo nano /etc/systemd/system/metasploit.service
+       ```
+       <div style="border: 1px solid black; padding: 10px;">
+      [Unit]
+      Description=Metasploit Framework
+      After=network.target
+     
+      [Service]
+      Type=simple
+      ExecStart=/usr/local/bin/msfconsole
+      User=root
+      WorkingDirectory=/usr/local/share/metasploit-framework
+     
+      [Install]
+      WantedBy=multi-user.target
+      </div>
 
-bash
-Copy code
-/etc/init.d/metasploit start
-Instead, install Metasploit Framework:
-
-bash
-Copy code
-sudo apt install metasploit-framework
-Verify Metasploit paths:
-
-bash
-Copy code
-which msfconsole
-locate metasploit-framework
-Adjust Metasploit service configuration if paths differ:
-
-bash
-Copy code
-sudo nano /etc/systemd/system/metasploit.service
-Add the following:
 
 ini
 Copy code
