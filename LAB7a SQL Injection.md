@@ -194,7 +194,7 @@ Example commands inside Metasploit console:
   set PASS_FILE /mouna19/passwords.txt
   run
   ```
-  this file contains potential passwords
+- this file contains potential passwords
   ![Local Example](./images/SQL_Injection/cap4.JPG)
   ![Local Example](./images/SQL_Injection/cap5.JPG)
 - 3-
