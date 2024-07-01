@@ -1,31 +1,29 @@
-### Section 1: 
+# Section 1: 
 
 - Start PostgreSQL:
   ```bash
   sudo /etc/init.d/postgresql start
-
-Reinstall PostgreSQL if necessary (due to missing database.yml in the directory /usr/share/metasploit-framework/config/database.yml):
-sudo apt install postgresql postgresql
-Enable and restart PostgreSQL:
-
-bash
-Copy code
-sudo systemctl enable postgresql
-sudo systemctl restart postgresql
-Verify PostgreSQL status:
-
-bash
-Copy code
-sudo systemctl status postgresql
-Switch to postgres user and access PostgreSQL:
-
-bash
-Copy code
-sudo su - postgres
-psql -p 5433
-\du   # Check if 'postgres' user exists and is a superuser
-alter user postgres with password 'admin@123';
-\l   # Check for a database named 'postgres'
+  ```
+  - Reinstall PostgreSQL if necessary (due to missing database.yml in the directory /usr/share/metasploit-framework/config/database.yml):
+    ```bash
+    sudo apt install postgresql postgresql
+    ```
+  - Enable and restart PostgreSQL:
+    ```bash
+    sudo systemctl enable postgresql
+    sudo systemctl restart postgresql
+    ```
+  - Verify PostgreSQL status:
+    ```bash
+    sudo systemctl status postgresql
+    ```
+  - Switch to postgres user and access PostgreSQL:
+    ```bash
+    sudo su - postgres
+    psql -p 5433
+    \du   # Check if 'postgres' user exists and is a superuser
+    alter user postgres with password 'admin@123';
+    \l   # Check for a database named 'postgres'
 Lab 2: Setting Up Metasploit
 Start Metasploit (old method, might not work):
 
