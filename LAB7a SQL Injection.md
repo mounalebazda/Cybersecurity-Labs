@@ -43,20 +43,19 @@
        ```bash
        sudo nano /etc/systemd/system/metasploit.service
        ```
-       <div style="border: 1px solid black; padding: 10px;">
-      [Unit]
-      Description=Metasploit Framework
-      After=network.target
-     
-      [Service]
-      Type=simple
-      ExecStart=/usr/local/bin/msfconsole
-      User=root
-      WorkingDirectory=/usr/local/share/metasploit-framework
-     
-      [Install]
-      WantedBy=multi-user.target
-      </div>
+       | [Unit]                                                 |        
+       | Description=Metasploit Framework                       |
+       | After=network.target                                   |
+       |                                                        |
+       | [Service]                                              |
+       | Type=simple                                            |
+       | ExecStart=/usr/local/bin/msfconsole                    |
+       | User=root                                              |  
+       | WorkingDirectory=/usr/local/share/metasploit-framework |
+       |                                                        |
+       | [Install]                                              |
+       | WantedBy=multi-user.target                             |
+       |                                                        |
 
 
 ini
