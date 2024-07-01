@@ -73,7 +73,7 @@
   ```bash
   ls -alZ /var/www/html/selinux
   ```
-- Access the new file via http://localhost/selinux/selinux.html
+- Access the new file via http://localhost/selinux/selinux.html.
   ![Local Example](./images/Selinux/cap2.JPG)
   
 - Access is denied, find the correct context:
@@ -87,6 +87,7 @@
   restorecon /var/www/html/selinux/selinux.html
   ```
 - Access the page via Firefox again.
+  
   ![Local Example](./images/Selinux/cap1.JPG)
   
 ### Method 2 : Allow Apache to access files or directories located outside of the default location (/var/www) on the file system
@@ -129,6 +130,7 @@
   restorecon -R -v /srv/web
   
 - The pages should now be accessible again.
+  
   ![Local Example](./images/Selinux/cap1.JPG)
 
 # Use Case 1: Port Authorization
