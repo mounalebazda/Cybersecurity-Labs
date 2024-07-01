@@ -46,7 +46,6 @@
        sudo nano /etc/systemd/system/metasploit.service
        ```
       <pre>
-      ```
       [Unit]
       Description=Metasploit Framework
       After=network.target
@@ -57,7 +56,6 @@
       WorkingDirectory=/usr/local/share/metasploit-framework
       [Install]
       WantedBy=multi-user.target
-      ```
       </pre>
   - Now start and check the status of metasploit
     ```bash
@@ -98,10 +96,10 @@
               ```
            - Ensure these lines exist:
              ```bash
-             local   all     postgres       peer
+             local   all     postgres                           peer
              
-             local   all     all            peer
-             host    all     all            127.0.0.1/32 md5
+             local   all     all                                peer
+             host    all     all           127.0.0.1/32         md5
              ```
            - Restart PostgreSQL:
              ```bash
