@@ -59,6 +59,7 @@
   restorecon /var/www/html/selinux/index.html
   ```
   - This command restores the default SELinux context of the file. After this, you should be able to access index.html via Firefox.
+    
     ![Local Example](./images/Selinux/cap1.JPG)
   
 - Create and move files:
