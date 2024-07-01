@@ -1,0 +1,7 @@
+# Lab 1: Setting Up PostgreSQL
+
+## Start PostgreSQL
+
+```bash
+sudo systemctl enable postgresql
+sudo systemctl restart postgresql
