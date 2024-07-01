@@ -57,29 +57,25 @@
       WantedBy=multi-user.target
       ```
       </pre>
-
-
-bash
-Copy code
-sudo systemctl start metasploit
-sudo systemctl status metasploit
-Lab 3: SQL Injection with Metasploit
-Start Metasploit console and wait for initialization:
-
-bash
-Copy code
-msfconsole
-Check database connection status:
-
-bash
-Copy code
-db_status
-If not connected, configure database connection:
-
-bash
-Copy code
-db_connect –y /usr/share/metasploit-framework/config/database.yml
-Resolve PostgreSQL configuration issues if encountered:
+  - Now start and check the status of metasploit
+    ```bash
+    sudo systemctl start metasploit
+    sudo systemctl status metasploit
+    ```
+  - Start Metasploit console and wait for initialization:
+    ```bash
+    msfconsole
+    ```
+  - Within the metasploit console run the following:
+      - Check database connection status:
+        ```bash
+        db_status
+        ```
+      - If not connected, configure database connection:
+        ```bash
+        db_connect –y /usr/share/metasploit-framework/config/database.yml
+        ```
+      - Resolve PostgreSQL configuration issues if encountered:
 
 bash
 Copy code
