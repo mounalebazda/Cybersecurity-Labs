@@ -78,7 +78,7 @@
         db_connect –y /usr/share/metasploit-framework/config/database.yml
         ```
       - If you encounter this error in PostgreSQL configuration:
-        ![Local Example](./images/SQL_Injection/cap1.jpg)
+        ![Local Example](./images/SQL_Injection/cap1.JPG)
          - Do the following :
            ```bash
            sudo nano /etc/postgresql/14/main/postgresql.conf
@@ -154,7 +154,7 @@
        msfconsole
        db_connect –y /usr/share/metasploit-framework/config/database.yml
        ```
-       ![Local Example](./images/SQL_Injection/cap2.jpg)
+       ![Local Example](./images/SQL_Injection/cap2.JPG)
        
 ## In Windows Server VM (MySQL Server)
      
@@ -183,7 +183,7 @@ Example commands inside Metasploit console:
   set RHOSTS 192.168.43.189
   run
   ```
-  ![Local Example](./images/SQL_Injection/cap3.jpg)
+  ![Local Example](./images/SQL_Injection/cap3.JPG)
 - 2-
   ```bash
   use auxiliary/scanner/mysql/mysql_login
@@ -195,8 +195,8 @@ Example commands inside Metasploit console:
   run
   ```
   this file contains potential passwords
-  ![Local Example](./images/SQL_Injection/cap4.jpg)
-  ![Local Example](./images/SQL_Injection/cap5.jpg)
+  ![Local Example](./images/SQL_Injection/cap4.JPG)
+  ![Local Example](./images/SQL_Injection/cap5.JPG)
 - 3-
   ```bash
   use auxiliary/admin/mysql/mysql_enum
@@ -208,7 +208,7 @@ Example commands inside Metasploit console:
   set PASSWORD mounaMYSQL19
   run
   ```
-  ![Local Example](./images/SQL_Injection/cap6.jpg)
+  ![Local Example](./images/SQL_Injection/cap6.JPG)
 - 4-
   ```bash
   use auxiliary/scanner/mysql/mysql_hashdump
@@ -220,10 +220,10 @@ Example commands inside Metasploit console:
   set PASSWORD mounaMYSQL19
   run
   ```
-  ![Local Example](./images/SQL_Injection/cap7.jpg)
+  ![Local Example](./images/SQL_Injection/cap7.JPG)
 - Open another terminal window in Kali for MySQL console access:
   ```bash
   mysql -u root -p -h 192.168.43.189
 - Enter the password (e.g., mounamySQL19) to access MySQL console.
-  ![Local Example](./images/SQL_Injection/cap8.jpg)
-  ![Local Example](./images/SQL_Injection/cap9.jpg)
+  ![Local Example](./images/SQL_Injection/cap8.JPG)
+  ![Local Example](./images/SQL_Injection/cap9.JPG)
