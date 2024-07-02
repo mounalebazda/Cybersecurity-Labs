@@ -10,27 +10,33 @@ In this lab, we will explore the process of breaking an RSA private key through 
 
   ![Local Example](./images/RSA/image1.jpg)
   
-- Then, we save the public key in a file 
-  ![Local Example](./images/RSA/image2.png)
+- Then, we save the public key in a file
+  
+  ![Local Example](./images/RSA/image5.png)
 
 - Now we can encrypt the message contained in plain.txt using the command
   ```bash
   openssl pkeyutl -encrypt -pubin -inkey rsa_pubkey.pem \-in plain.txt -out cipher.txt
   ```
-  ![Local Example](./images/RSA/image3.png)
+  
+  ![Local Example](./images/RSA/image12.png)
 
 - We can then decrypt the message as follows
-  ![Local Example](./images/RSA/image4.png)
+  
+  ![Local Example](./images/RSA/image9.png)
 
 ## Cracking the private key using the public key : 
 
-- First we use the following command to get the modulus : 
-  ![Local Example](./images/RSA/image5.png)
+- First we use the following command to get the modulus :
+  
+  ![Local Example](./images/RSA/image8.png)
   
 - Then, we will turn the hexadecimal number into a decimal one
-  ![Local Example](./images/RSA/image6.png)
+  
+  ![Local Example](./images/RSA/image4.png)
 - Now we use msieve to obtain the factorization of the modulus
-  ![Local Example](./images/RSA/image7.png)
+  
+  ![Local Example](./images/RSA/image2.png)
 
 ## Getting the private key 
 
@@ -84,16 +90,19 @@ In this lab, we will explore the process of breaking an RSA private key through 
   RSA_free(keypair);
   return 0}
   ```
-- By executing the C program, here is the result : 
-  ![Local Example](./images/RSA/image10.png)
-- We can see that the generated private key is the same as the original one. 
-  ![Local Example](./images/RSA/image11.png)
+- By executing the C program, here is the result :
+  
+  ![Local Example](./images/RSA/image7.png)
+- We can see that the generated private key is the same as the original one.
+  
+  ![Local Example](./images/RSA/image1.jpg)
   
 
 ## Decrypting the message using the hacked private key:
 
-- The message has been successfully decrypted ! 
-  ![Local Example](./images/RSA/image12.png)
+- The message has been successfully decrypted !
+  
+  ![Local Example](./images/RSA/image10.png)
 
 
 # Conclusion
