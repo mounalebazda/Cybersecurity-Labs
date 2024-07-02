@@ -102,7 +102,7 @@ In this lab, we will explore the process of breaking an RSA private key through 
 
 - The message has been successfully decrypted !
   
-  ![Local Example](./images/RSA/image10.png)
+  ![Local Example](./images/RSA/image10.jpg)
 
 
 # Conclusion
