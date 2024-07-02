@@ -6,7 +6,10 @@ In this lab, we will explore the process of breaking an RSA private key through 
 - Generating pair of keys : we try to generate a 256-bit RSA Key Pair
 - We couldn't generate a 256-bit RSA key due to the fact that modern versions of OpenSSL and the RSA algorithm itself have deprecated or removed support for RSA keys smaller than 512 bits.So instead we generate a 512-bit Key Pair
 
-  ![Local Example](./images/RSA/image1.png)
+  
+
+  ![Local Example](./images/RSA/image1.jpg)
+  
 - Then, we save the public key in a file 
   ![Local Example](./images/RSA/image2.png)
 
